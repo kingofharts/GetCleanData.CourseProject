@@ -7,7 +7,38 @@ This document is broken into three sections:
 
 * A description of the final product, "tidy_data.txt"
 * A description of the actions taken to generate "tidy_data.txt" using "run_analysis.R"
-* A direct reprint of the "readme.txt" file included with the source (raw) data set describing those data's format and configuration
+* A direct reprint of the "readme.txt" file included with the source (raw) data set describing those data's format and configuration.  This section begins with "Human Activity Recognition..."
+
+## Final Product, "tidy_data.txt"
+
+"tidy_data.txt" is a text export of an R data frame composed of 180 rows of 68 variables.
+
+The first column in the data frame, 'subject', indicates which of the 30 experiment participants/subjects.
+The second column in the data frame, 'activity', indicates which of the 6 activities.
+
+30 members of first grouping x 6 possible activities = 180 rows/pairings.
+
+Each column thereafter houses the mean of all recorded measurements of that row's subject performing that row's activity for that column name's variable.
+
+These 66 variables are each variable in the original 561 variable set where either "mean()" or "std()" are included in the variable name.
+
+The column names for these 66 variables are taken directly from the source data.  Aside from boiling the data down to the variable mean based on the groupings mentioned above, no other changes were made to these variables.
+
+## Modifications to source data
+
+The original data were consolidated and reduced as follows:
+
+* The variable names housed in "UCI HAR Dataset/features.txt" were pulled into the environment as a one column data frame, which was subsequently used to insert names() into each of the data frames sourced from the "X_...txt" files.
+* The activity labels housed in "UCI HAR Dataset/activity_labels.txt" were pulled into the environment as a one column data frame.  The activity codes in each of the "y_...txt" files were pulled in as one column data frames.  The activity label data frame was then joined (using plyr) to each of the "y_" data frames as new data frames, which were then sourced to replace the codes in the original "y_..." data frames.  More simply, the activity labels were indexed to the activity codes, and then using this index the codes in each of the y_ data frames were replaced with the labels.
+* Each of the "subject_...txt" files were pulled in as one column data frames with the column names "subject".
+* Now, with data frames with column names for each of the X_, y_, and subject_ files for both test and train, one merged data frame for each of test and train was created using cbind.
+* The two test and train merged data frames were then rbinded together into one flat file.  The rows were sorted by subject and then renumbered.
+* A list of column names for keeping was grep'ed from the flat file.  Sought patterns were "mean()" and "std()".
+* A new, mean & std only data frame was subsetted out of the flat file using the list of columns generated in the previous step (adding in the subject & activity columns).
+* A final tidy data frame was aggregated out of the subsetted data frame, grouping by subject and activity, returning the mean for each group.
+* This final tidy data frame was written to the "tidy_data.txt" file.
+
+## Reprint of original data set readme.txt
 
 ==================================================================
 Human Activity Recognition Using Smartphones Dataset

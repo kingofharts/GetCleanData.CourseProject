@@ -153,6 +153,7 @@ write.table(
       x = tidy_frame,
       file = "tidy_data.txt",
       append = FALSE,
+      quote = FALSE,
       row.names = FALSE,
       col.names = TRUE,
       )

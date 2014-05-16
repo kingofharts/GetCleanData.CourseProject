@@ -24,6 +24,10 @@ These 66 variables are each variable in the original 561 variable set where eith
 
 The column names for these 66 variables are taken directly from the source data.  Aside from boiling the data down to the variable mean based on the groupings mentioned above, no other changes were made to these variables.
 
+Quick script for reading tidy_data.txt into a data frame:
+
+tidy_data <- read.table("tidy_data.txt", header=TRUE, check.names=FALSE)
+
 ## Modifications to source data
 
 The original data were consolidated and reduced as follows:

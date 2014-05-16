@@ -44,6 +44,7 @@ As indicated on the course site, the objectives are:
 * Combined/boiled down the data frames to just the rows & columns needed.  Used grep to narrow down variable columns to just those that included mean() or std().  Dropped meanFreq() columns as not perfectly matching project instructions.
 * Used aggregate() to further simmer the data frame down to just the final product, then coded for export to tidy_data.txt
 
-## To-Do
+## CodeBook.md
 
-* Need to draft and commit the codebook for the script/data!
+* 1st Draft up.  Gauging how much detail to include without just reprinting the R script.
+* Reused original readme.txt for description of source data.  Figured not broke, don't fix it.
